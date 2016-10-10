@@ -5,25 +5,27 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using LDSGems.Models;
 using LDSGems.Data;
+using LDSGems.Services;
 
 namespace LDSGems.Web.Controllers
 {
     [Route("api/[controller]")]
     public class ValuesController : Controller
     {
-        private LDSGemsContext _context;
+        private LDSGemsService _service;
 
         public ValuesController(LDSGemsContext context)
         {
-            _context = context;
+            
+            _service = new LDSGemsService(context);
         }
 
         // GET api/values
         [HttpGet]
         [ProducesResponseType(typeof(List<DailyGems>), 200)]
-        public IEnumerable<DailyGems> Get()
+        public async Task<IEnumerable<DailyGems>> Get()
         {
-            return _context.DailyGems.ToList();
+            return await _service.GetDailyGemsAsync();
             // return new string[] { "value1", "value2" };
         }
 
