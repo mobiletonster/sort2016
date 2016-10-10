@@ -3,10 +3,11 @@
 
   "dependencies": {
     "LDSGems.Models": "1.0.0-*",
-    "Microsoft.EntityFrameworkCore.SqlServer.Design": "1.0.1",
+    "Microsoft.EntityFrameworkCore.SqlServer": "1.0.1",
     "NETStandard.Library": "1.6.0"
   },
-
+  "tools": {
+  },
   "frameworks": {
     "netstandard1.6": {
       "imports": "dnxcore50"

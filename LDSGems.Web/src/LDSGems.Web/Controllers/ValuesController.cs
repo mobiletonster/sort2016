@@ -3,17 +3,28 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using LDSGems.Models;
+using LDSGems.Data;
 
 namespace LDSGems.Web.Controllers
 {
     [Route("api/[controller]")]
     public class ValuesController : Controller
     {
+        private LDSGemsContext _context;
+
+        public ValuesController(LDSGemsContext context)
+        {
+            _context = context;
+        }
+
         // GET api/values
         [HttpGet]
-        public IEnumerable<string> Get()
+        [ProducesResponseType(typeof(List<DailyGems>), 200)]
+        public IEnumerable<DailyGems> Get()
         {
-            return new string[] { "value1", "value2" };
+            return _context.DailyGems.ToList();
+            // return new string[] { "value1", "value2" };
         }
 
         // GET api/values/5

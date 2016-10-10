@@ -17,10 +17,14 @@
     "Microsoft.Extensions.Options.ConfigurationExtensions": "1.0.0",
     "Swashbuckle": "6.0.0-beta902",
     "LDSGems.Services": "1.0.0-*",
-    "LDSGems.Models": "1.0.0-*"
+    "LDSGems.Models": "1.0.0-*",
+    "Microsoft.EntityFrameworkCore.Design": "1.0.0-preview2-final",
+    "Microsoft.EntityFrameworkCore.SqlServer.Design": "1.0.1",
+    "Microsoft.EntityFrameworkCore.SqlServer": "1.0.1"
   },
 
   "tools": {
+    "Microsoft.EntityFrameworkCore.Tools": "1.0.0-preview2-final",
     "Microsoft.AspNetCore.Server.IISIntegration.Tools": "1.0.0-preview2-final"
   },
 

@@ -7,6 +7,8 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using Microsoft.EntityFrameworkCore;
+using LDSGems.Data;
 
 namespace LDSGems.Web
 {
@@ -30,6 +32,9 @@ namespace LDSGems.Web
             // Add framework services.
             services.AddMvc();
             services.AddSwaggerGen();
+
+            var connection = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\spencerto\Source\Repos\sort2016\LDSGems.Web\src\LDSGems.Web\App_Data\glfeed.mdf;Integrated Security=True;Connect Timeout=30";
+            services.AddDbContext<LDSGemsContext>(options => options.UseSqlServer(connection));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
