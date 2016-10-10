@@ -56,5 +56,14 @@ default GET:
 annotations:
 	[ProducesResponseType(typeof(List<DailyGems>), 200)]
 
-------------------------- 
+------------------------- Add Connection String to appsettings.json -----------------------------------------
+"ConnectionStrings": {
+"LDSGemsContext": "Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\spencerto\\Source\\Repos\\sort2016\\LDSGems.Web\\src\\LDSGems.Web\\App_Data\\glfeed.mdf;Integrated Security=True;Connect Timeout=30"
+},
+
+in Startup.cs, replace var connection =  with:
+  
+var connection = Configuration.GetConnectionString("LDSGemsContext");
+
+
 

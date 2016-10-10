@@ -33,7 +33,7 @@ namespace LDSGems.Web
             services.AddMvc();
             services.AddSwaggerGen();
 
-            var connection = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\spencerto\Source\Repos\sort2016\LDSGems.Web\src\LDSGems.Web\App_Data\glfeed.mdf;Integrated Security=True;Connect Timeout=30";
+            var connection = Configuration.GetConnectionString("LDSGemsContext");
             services.AddDbContext<LDSGemsContext>(options => options.UseSqlServer(connection));
         }
 

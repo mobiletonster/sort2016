@@ -12,6 +12,7 @@ namespace LDSGems.Data
         { }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
+            // optionsBuilder not needed if we are passing in options above.
             // #warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
             // optionsBuilder.UseSqlServer(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\spencerto\Source\Repos\sort2016\LDSGems.Web\src\LDSGems.Web\App_Data\glfeed.mdf;Integrated Security=True;Connect Timeout=30");
         }
