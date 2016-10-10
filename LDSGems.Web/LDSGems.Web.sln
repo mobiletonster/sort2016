@@ -8,6 +8,7 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{645C4AE3-2F26-4C6D-A898-78D26EA4C5B2}"
 	ProjectSection(SolutionItems) = preProject
 		global.json = global.json
+		snippets.txt = snippets.txt
 	EndProjectSection
 EndProject
 Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "LDSGems.Web", "src\LDSGems.Web\LDSGems.Web.xproj", "{79EC3095-B947-4855-90A4-EA671F258496}"
