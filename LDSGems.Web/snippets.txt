@@ -49,3 +49,12 @@ public ValuesController(LDSGemsContext context)
 {
     _context = context;
 }
+
+default GET:
+    return _context.DailyGems.ToList();
+
+annotations:
+	[ProducesResponseType(typeof(List<DailyGems>), 200)]
+
+------------------------- 
+
