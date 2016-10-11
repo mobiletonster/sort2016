@@ -25,5 +25,10 @@ namespace LDSGems.Services
         {
             return await _repository.GetDailyGems().ToListAsync();
         }
+
+        public async Task<DailyGems> GetDailyGemByIdAsync(int id)
+        {
+            return await _repository.GetDailyGems().FirstOrDefaultAsync(m => m.Id == id);
+        }
     }
 }

@@ -115,5 +115,34 @@ public async Task<IEnumerable<DailyGems>> Get()
     return await _service.GetDailyGemsAsync();
 }
 
+---------------------------- Add a single return value endpoint ---------------------------------------
+in LDSGemsService.cs
+
+public async Task<DailyGems> GetDailyGemByIdAsync(int id)
+{
+    return await _repository.GetDailyGems().FirstOrDefaultAsync(m => m.Id == id);
+}
+
+in Values Controller:
+
+[HttpGet]
+[Route("api/dailygems/{id}")]
+[ProducesResponseType(typeof(DailyGems), 200)]
+[ProducesResponseType(typeof(string), 400)]
+public async Task<IActionResult> Get(int id)
+{
+    if (id > 0)
+    {
+        return Ok(await _service.GetDailyGemByIdAsync(id));
+    }
+    else
+    {
+        var message = $"{id} is not a valid id value.";
+        return BadRequest(message);
+    }
+}
+
+
+
 
 

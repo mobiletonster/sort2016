@@ -9,7 +9,7 @@ using LDSGems.Services;
 
 namespace LDSGems.Web.Controllers
 {
-    [Route("api/[controller]")]
+    //[Route("api/[controller]")]
     public class ValuesController : Controller
     {
         private LDSGemsService _service;
@@ -21,6 +21,7 @@ namespace LDSGems.Web.Controllers
 
         // GET api/values
         [HttpGet]
+        [Route("api/dailygems")]
         [ProducesResponseType(typeof(List<DailyGems>), 200)]
         public async Task<IEnumerable<DailyGems>> Get()
         {
@@ -28,10 +29,22 @@ namespace LDSGems.Web.Controllers
         }
 
         // GET api/values/5
-        [HttpGet("{id}")]
-        public string Get(int id)
+        // [HttpGet("{id}")]
+        [HttpGet]
+        [Route("api/dailygems/{id}")]
+        [ProducesResponseType(typeof(DailyGems), 200)]
+        [ProducesResponseType(typeof(string), 400)]
+        public async Task<IActionResult> Get(int id)
         {
-            return "value";
+            if (id > 0)
+            {
+                return Ok(await _service.GetDailyGemByIdAsync(id));
+            }
+            else
+            {
+                var message = $"{id} is not a valid id value.";
+                return BadRequest(message);
+            }
         }
 
         // POST api/values
