@@ -65,5 +65,55 @@ in Startup.cs, replace var connection =  with:
   
 var connection = Configuration.GetConnectionString("LDSGemsContext");
 
+------------------------- Add LDSGemsRepository.cs file ------------------------------------------------------
+public interface ILDSGemsRepository
+{
+    IQueryable<DailyGems> GetDailyGems();
+}
+public class LDSGemsRepository: ILDSGemsRepository
+{
+    private LDSGemsContext _context;
+    public LDSGemsRepository(LDSGemsContext context)
+    {
+        _context = context;
+    }
+
+    public IQueryable<DailyGems> GetDailyGems()
+    {
+        return _context.DailyGems;
+    }
+}
+
+--------------------------  Add LDSGemsService.cs file to Services project ------------------------------------
+private ILDSGemsRepository _repository;
+public LDSGemsService(ILDSGemsRepository repository)
+{
+    _repository = repository;
+}
+
+public LDSGemsService(LDSGemsContext context)
+{
+    _repository = new LDSGemsRepository(context);
+}
+
+// notice the async call here.
+public async Task<List<DailyGems>> GetDailyGemsAsync()
+{
+    return await _repository.GetDailyGems().ToListAsync();
+}
+
+-----------------------------  Change ValuesController.cs file ---------------------------------------------
+private LDSGemsService _service;
+
+public ValuesController(LDSGemsContext context)
+{           
+    _service = new LDSGemsService(context);
+}
+
+public async Task<IEnumerable<DailyGems>> Get()
+{
+    return await _service.GetDailyGemsAsync();
+}
+
 
 

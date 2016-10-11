@@ -15,8 +15,7 @@ namespace LDSGems.Web.Controllers
         private LDSGemsService _service;
 
         public ValuesController(LDSGemsContext context)
-        {
-            
+        {           
             _service = new LDSGemsService(context);
         }
 
@@ -26,7 +25,6 @@ namespace LDSGems.Web.Controllers
         public async Task<IEnumerable<DailyGems>> Get()
         {
             return await _service.GetDailyGemsAsync();
-            // return new string[] { "value1", "value2" };
         }
 
         // GET api/values/5
