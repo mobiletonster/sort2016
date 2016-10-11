@@ -191,3 +191,13 @@ And the interface:
             return Ok(updated);
         }
 
+---------------------------------- Add a Static Web Server --------------------------------
+        inside WebHostBuilder in MAIN method in Program.cs.
+
+		.UseContentRoot(Directory.GetCurrentDirectory())
+
+         app.UseStaticFiles();
+
+		// place before UseStaticFiles();
+		app.UseDefaultFiles();
+
