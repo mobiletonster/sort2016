@@ -142,7 +142,52 @@ public async Task<IActionResult> Get(int id)
     }
 }
 
+---------------------------- Add Update Endpoint -----------------------------
+Add update method to repository
 
+        public async Task<object> UpdateRecordAsync(object entity)
+        {
+            var dbEntity = _context.Entry(entity);
+            dbEntity.State = EntityState.Modified;
+            try
+            {
+                await _context.SaveChangesAsync();
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+            finally
+            {
+                dbEntity.State = EntityState.Detached;
+            }
+            return dbEntity.Entity;
+        }
 
+And the interface:
 
+        Task<object> UpdateRecordAsync(object entity);
+
+---------------------------------- Add a Service Method --------------------------------
+
+        public async Task<DailyGems> UpdateDailyGemAsync(DailyGems gem)
+        {
+            var updated = await _repository.UpdateRecordAsync(gem) as DailyGems;
+            return updated;
+        }
+
+---------------------------------- Add a Controller Method -------------------------------
+
+        [HttpPut]
+        [Route("api/dailygems")]
+        [ProducesResponseType(typeof(DailyGems),200)]
+        public async Task<IActionResult> Put([FromBody]DailyGems gem)
+        {
+            if (gem == null)
+            {
+                return BadRequest("DailyGem cannot be null");
+            }
+            var updated = await _service.UpdateDailyGemAsync(gem);
+            return Ok(updated);
+        }
 

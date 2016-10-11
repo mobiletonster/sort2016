@@ -30,5 +30,11 @@ namespace LDSGems.Services
         {
             return await _repository.GetDailyGems().FirstOrDefaultAsync(m => m.Id == id);
         }
+
+        public async Task<DailyGems> UpdateDailyGemAsync(DailyGems gem)
+        {
+            var updated = await _repository.UpdateRecordAsync(gem) as DailyGems;
+            return updated;
+        }
     }
 }

@@ -54,9 +54,17 @@ namespace LDSGems.Web.Controllers
         }
 
         // PUT api/values/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody]string value)
+        [HttpPut]
+        [Route("api/dailygems")]
+        [ProducesResponseType(typeof(DailyGems),200)]
+        public async Task<IActionResult> Put([FromBody]DailyGems gem)
         {
+            if (gem == null)
+            {
+                return BadRequest("DailyGem cannot be null");
+            }
+            var updated = await _service.UpdateDailyGemAsync(gem);
+            return Ok(updated);
         }
 
         // DELETE api/values/5
