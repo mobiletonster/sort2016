@@ -22,6 +22,7 @@ namespace LDSGems.Web
                 .AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true)
                 .AddEnvironmentVariables();
             Configuration = builder.Build();
+            
         }
 
         public IConfigurationRoot Configuration { get; }
@@ -34,6 +35,8 @@ namespace LDSGems.Web
             services.AddSwaggerGen();
 
             var connection = Configuration.GetConnectionString("LDSGemsContext");
+            var env = Configuration.GetValue<string>("Environment");
+            var biteme = Configuration.GetValue<string>("BITEME");
             services.AddDbContext<LDSGemsContext>(options => options.UseSqlServer(connection));
         }
 

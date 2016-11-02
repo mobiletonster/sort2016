@@ -13,6 +13,7 @@
       "launchBrowser": true,
       "launchUrl": "swagger/ui",
       "environmentVariables": {
+        "BITEME": "loser",
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
     },
